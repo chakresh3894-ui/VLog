@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block title %}Log in | Auth Portal{% endblock %}
+{% block content %}<section class="auth-layout"><aside class="login-intro"><p class="eyebrow">WELCOME TO AUTH PORTAL</p><h1>A better way to get back to work.</h1><p>Sign in securely and continue from where you left off.</p><div class="intro-pill">✓ Secure & simple</div></aside><section class="card login-card"><p class="eyebrow">WELCOME BACK</p><h2>Sign in to your account</h2><p class="muted">New here? <a href="{% url 'accounts:register' %}">Create an account</a>.</p><form method="post">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}<input type="hidden" name="next" value="{{ next }}"><button class="primary-button" type="submit">Log in <span>→</span></button></form></section></section>{% endblock %}
+

@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | Auth Portal{% endblock %}
+{% block content %}<section class="dashboard-hero"><p class="eyebrow">YOUR WORKSPACE</p><h1>Welcome back, {{ user.username }}.</h1><p>Your dashboard is ready for what comes next.</p></section><section class="dashboard-card"><span class="step">01</span><div><h2>Page one</h2><p>This clean space is your starting point.</p></div><a class="page-two-button" href="{% url 'accounts:page_two' %}">Explore page two <b>→</b></a></section>{% endblock %}
+
