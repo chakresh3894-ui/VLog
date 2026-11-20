@@ -47,6 +47,29 @@ ul.errorlist { color: #bd2331; font-size: .82rem; padding-left: 1.1rem; }
 .placeholder-page > p:not(.eyebrow) { color: #71809a; margin: 0 0 2rem; }
 .placeholder-number { font-size: 1.2rem; height: 65px; width: 65px; }
 small { color: #71809a; }
+.standard-card { margin: 0 auto; max-width: 520px; padding: clamp(2rem, 5vw, 3.5rem); width: 100%; }
+.standard-card h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); }
+.forgot-link { margin: 1.25rem 0 0; text-align: center; }
+.development-code { background: #f1efff; border: 1px dashed #7567e9; border-radius: 12px; display: grid; gap: .4rem; margin: 1.5rem 0; padding: 1rem; text-align: center; }
+.development-code span { color: #6658d8; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.development-code strong { color: #352991; font-size: 2.2rem; letter-spacing: .2em; }
+.resend-form { margin-top: 1.25rem; text-align: center; }
+.resend-form p { color: #71809a; font-size: .9rem; }
+.text-button { background: transparent; border: 0; color: #5645d8; cursor: pointer; font: inherit; font-weight: 700; }
+.auth-page { margin: 0 auto; max-width: 560px; }
+.auth-progress { align-items: center; display: flex; justify-content: center; margin: 0 auto 1.5rem; max-width: 220px; }
+.auth-progress i { background: #dfe3ed; height: 2px; width: 48px; }
+.auth-progress i.complete { background: #5645d8; }
+.progress-dot { align-items: center; background: #edf0f5; border-radius: 50%; color: #8a94a8; display: flex; font-size: .75rem; font-weight: 700; height: 24px; justify-content: center; width: 24px; }
+.progress-dot.active, .progress-dot.complete { background: #5645d8; color: white; }
+.form-icon { align-items: center; background: linear-gradient(135deg, #ebe9ff, #dcd7ff); border-radius: 14px; color: #5645d8; display: flex; font-size: 1.35rem; height: 48px; justify-content: center; margin-bottom: 1.25rem; width: 48px; }
+.phone-icon { font-size: 1.7rem; }
+.success-icon { background: #ddf8e7; color: #168043; }
+.success-card { text-align: center; }
+.success-card .form-icon { margin-left: auto; margin-right: auto; }
+.secondary-button { background: #17213a; border-radius: 9px; color: white; display: inline-block; margin-top: .75rem; padding: .85rem 1rem; }
+.back-to-login { margin: 1.5rem 0 0; text-align: center; }
+.otp-field input { font-size: 1.75rem; letter-spacing: .55em; padding-left: 1.2rem; text-align: center; }
 
 @media (max-width: 720px) {
   .site-header { padding: .85rem 1rem; }

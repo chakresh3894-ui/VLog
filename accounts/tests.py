@@ -2,15 +2,37 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
+from .models import PhoneVerification
+
 
 class AccountFlowTests(TestCase):
-    def test_registration_creates_logged_in_user(self):
+    def test_registration_requires_phone_verification(self):
         response = self.client.post(reverse("accounts:register"), {
             "username": "newuser", "email": "newuser@example.com",
+            "phone_number": "+919876543210",
             "password1": "StrongPassword!123", "password2": "StrongPassword!123",
         })
+        self.assertRedirects(response, reverse("accounts:verify_phone"))
+        user = User.objects.get(username="newuser")
+        self.assertFalse(user.is_active)
+        self.assertFalse(PhoneVerification.objects.get(user=user).is_verified)
+
+    def test_correct_otp_activates_account(self):
+        user = User.objects.create_user(username="newuser", password="StrongPassword!123", is_active=False)
+        verification = PhoneVerification.objects.create(user=user, phone_number="+919876543210")
+        code = verification.generate_otp()
+        verification.save()
+        session = self.client.session
+        session["pending_verification_user_id"] = user.id
+        session.save()
+
+        response = self.client.post(reverse("accounts:verify_phone"), {"otp": code})
+
         self.assertRedirects(response, reverse("accounts:dashboard"))
-        self.assertTrue(User.objects.filter(username="newuser").exists())
+        user.refresh_from_db()
+        verification.refresh_from_db()
+        self.assertTrue(user.is_active)
+        self.assertTrue(verification.is_verified)
 
     def test_dashboard_requires_login(self):
         response = self.client.get(reverse("accounts:dashboard"))
@@ -31,4 +53,8 @@ class AccountFlowTests(TestCase):
         self.client.force_login(user)
         response = self.client.get(reverse("accounts:admin_overview"))
         self.assertContains(response, "Admin overview")
+
+    def test_password_reset_page_is_available(self):
+        response = self.client.get(reverse("accounts:password_reset"))
+        self.assertContains(response, "Reset your password")
 
