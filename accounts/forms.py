@@ -15,6 +15,13 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ("username", "email", "phone_number", "password1", "password2")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password1"].help_text = (
+            "Your password must contain at least 8 characters, including uppercase "
+            "and lowercase letters, a number, and a special character."
+        )
+
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
         if User.objects.filter(email__iexact=email).exists():

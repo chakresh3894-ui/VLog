@@ -70,6 +70,20 @@ small { color: #71809a; }
 .secondary-button { background: #17213a; border-radius: 9px; color: white; display: inline-block; margin-top: .75rem; padding: .85rem 1rem; }
 .back-to-login { margin: 1.5rem 0 0; text-align: center; }
 .otp-field input { font-size: 1.75rem; letter-spacing: .55em; padding-left: 1.2rem; text-align: center; }
+.password-wrapper { position: relative; }
+.password-wrapper input { padding-right: 3.2rem; }
+.password-toggle { align-items: center; background: transparent; border: 0; color: #71809a; cursor: pointer; display: flex; height: 100%; justify-content: center; position: absolute; right: 0; top: 0; width: 3rem; }
+.password-toggle:hover, .password-toggle:focus { color: #5645d8; outline: 0; }
+.password-toggle svg { height: 20px; width: 20px; }
+.password-checklist { display: grid; gap: .35rem; list-style: none; margin: .75rem 0 0; padding: 0; }
+.password-checklist li { color: #71809a; font-size: .82rem; }
+.password-checklist li::before { content: '○'; display: inline-block; margin-right: .5rem; }
+.password-checklist li.met { color: #168043; }
+.password-checklist li.met::before { content: '✓'; font-weight: 700; }
+.password-checklist li.unmet { color: #bd2331; }
+.password-match { display: block; font-size: .82rem; margin-top: .35rem; }
+.password-match.met { color: #168043; }
+.password-match.unmet { color: #bd2331; }
 
 @media (max-width: 720px) {
   .site-header { padding: .85rem 1rem; }
