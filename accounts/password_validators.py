@@ -8,7 +8,12 @@ class StrongPasswordValidator:
     """Require a strong password that is not similar to the username."""
 
     def validate(self, password, user=None):
+        if not isinstance(password, str):
+            return
+
         username = getattr(user, "username", "") if user else ""
+        if not isinstance(username, str):
+            username = ""
         username = username.strip().lower()
 
         if username:
